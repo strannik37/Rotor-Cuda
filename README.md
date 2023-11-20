@@ -1,7 +1,6 @@
 # Rotor-Cuda v1.07
-![alt text](Others/Rotor-Cuda.jpg "Rotor-Cuda")
-This is a modified version of KeyHunt v1.7 by [kanhavishva](https://github.com/kanhavishva/KeyHunt-Cuda).
-A lot of gratitude to all the developers whose codes has been used here.
+![ROTOR-CUDA phrutis](https://github.com/phrutis/Rotor-Cuda/assets/140947743/05f13b44-c80c-4fa2-9010-73f784fd796f)<br>
+This is a modified version of KeyHunt v1.7<br>
 
 ## Changes:
 - Default Random 95% (252-256) bit + 5% (248-252) bit
