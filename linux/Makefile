@@ -1,11 +1,11 @@
 #---------------------------------------------------------------------
-# Makefile for Rotor
+# Makefile for KeyHunt
 #
 # Author : Jean-Luc PONS
 
 SRC = Base58.cpp IntGroup.cpp Main.cpp Bloom.cpp Random.cpp \
       Timer.cpp Int.cpp IntMod.cpp Point.cpp SECP256K1.cpp \
-      Rotor.cpp GPU/GPUGenerate.cpp hash/ripemd160.cpp \
+      KeyHunt.cpp GPU/GPUGenerate.cpp hash/ripemd160.cpp \
       hash/sha256.cpp hash/sha512.cpp hash/ripemd160_sse.cpp \
       hash/sha256_sse.cpp hash/keccak160.cpp GmpUtil.cpp CmdParse.cpp
 
@@ -15,7 +15,7 @@ ifdef gpu
 
 OBJET = $(addprefix $(OBJDIR)/, \
         Base58.o IntGroup.o Main.o Bloom.o Random.o Timer.o Int.o \
-        IntMod.o Point.o SECP256K1.o Rotor.o GPU/GPUGenerate.o \
+        IntMod.o Point.o SECP256K1.o KeyHunt.o GPU/GPUGenerate.o \
         hash/ripemd160.o hash/sha256.o hash/sha512.o \
         hash/ripemd160_sse.o hash/sha256_sse.o hash/keccak160.o \
         GPU/GPUEngine.o GmpUtil.o CmdParse.o)
@@ -24,7 +24,7 @@ else
 
 OBJET = $(addprefix $(OBJDIR)/, \
         Base58.o IntGroup.o Main.o Bloom.o Random.o Timer.o Int.o \
-        IntMod.o Point.o SECP256K1.o Rotor.o GPU/GPUGenerate.o \
+        IntMod.o Point.o SECP256K1.o KeyHunt.o GPU/GPUGenerate.o \
         hash/ripemd160.o hash/sha256.o hash/sha512.o \
         hash/ripemd160_sse.o hash/sha256_sse.o hash/keccak160.o \
         GmpUtil.o CmdParse.o)
@@ -32,7 +32,7 @@ OBJET = $(addprefix $(OBJDIR)/, \
 endif
 
 CXX        = g++
-CUDA       = /usr/local/cuda-11.0
+CUDA       = /usr/local/cuda-12.0
 CXXCUDA    = /usr/bin/g++
 NVCC       = $(CUDA)/bin/nvcc
 # nvcc requires joint notation w/o dot, i.e. "5.2" -> "52"
@@ -70,11 +70,11 @@ endif
 $(OBJDIR)/%.o : %.cpp
 	$(CXX) $(CXXFLAGS) -o $@ -c $<
 
-all: Rotor
+all: KeyHunt
 
-Rotor: $(OBJET)
-	@echo Making Rotor...
-	$(CXX) $(OBJET) $(LFLAGS) -o Rotor
+KeyHunt: $(OBJET)
+	@echo Making KeyHunt...
+	$(CXX) $(OBJET) $(LFLAGS) -o KeyHunt
 
 $(OBJET): | $(OBJDIR) $(OBJDIR)/GPU $(OBJDIR)/hash
 
@@ -92,5 +92,4 @@ clean:
 	@rm -f obj/*.o
 	@rm -f obj/GPU/*.o
 	@rm -f obj/hash/*.o
-
 
